@@ -1,0 +1,11 @@
+name: "Plasmo Github Action Template"
+description: "Straight forward template minus the overhead."
+author: "Plasmo Corp."
+inputs:
+  milliseconds: # change this
+    required: true
+    description: "input description here"
+    default: "3000"
+runs:
+  using: "node16"
+  main: "dist/index.js"
