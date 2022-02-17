@@ -1,18 +1,10 @@
 <p align="center">
-  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="typescript-action status" src="https://github.com/plasmo-corp/download-release-asse/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="download-release-asset status" src="https://github.com/plasmo-corp/download-release-asset/workflows/build-test/badge.svg"></a>
 </p>
 
 # Download release assets
 
 Use this action to download assets from a release in any github project that you can access.
-
-## Implementation notes
-
-We decided to build this action because when searching for a "github release file download" action in a couple of search engine, we couldn't find one that fits our need.
-
-While implementing the code to download the asset however, we found this issue [octokit/rest.js/issues/6#issuecomment-477800969](https://github.com/octokit/rest.js/issues/6#issuecomment-477800969), which has a reference to an issue pointing to [github-release-assets](https://github.com/duhow/download-github-release-assets).
-
-Since that action does not use TypeScript, we decided to go ahead with the release of our own.
 
 ## Usage
 
@@ -40,7 +32,15 @@ steps:
       token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+## Implementation notes
+
+We decided to build this action because when searching for a "github release file download" action in a couple of search engine, we couldn't find one that fits our need.
+
+While implementing the code to download the asset however, we found this issue [octokit/rest.js/issues/6#issuecomment-477800969](https://github.com/octokit/rest.js/issues/6#issuecomment-477800969), which has a reference to an issue pointing to [download-github-release-assets](https://github.com/duhow/download-github-release-assets).
+
+Since that action does not use TypeScript, we decided to go ahead with the release of our own.
+
 ## Acknowledgements
 
-- [github-release-assets](https://github.com/duhow/download-github-release-assets)
+- [download-github-release-assets](https://github.com/duhow/download-github-release-assets)
 - [fetch-gh-release-asse](https://github.com/dsaltares/fetch-gh-release-asset)
