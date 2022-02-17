@@ -12,7 +12,7 @@ To download any `test-*.txt` file into the pwd, from the latest release within t
 
 ```yaml
 steps:
-  - uses: plasmo-corp/download-release-asset@v0.0.0
+  - uses: plasmo-corp/download-release-asset@v1.0.0
     with:
       files: test-*.txt
 ```
@@ -21,7 +21,7 @@ To download any `test-*.md` and `foo-*.zip` file from another repository, with a
 
 ```yaml
 steps:
-  - uses: plasmo-corp/download-release-asset@v0.0.0
+  - uses: plasmo-corp/download-release-asset@v1.0.0
     with:
       files: |
         test-*.md
