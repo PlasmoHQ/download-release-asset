@@ -1,9 +1,8 @@
-import { debug, getInput, setFailed } from "@actions/core"
+import { debug, getInput, setFailed, setOutput } from "@actions/core"
 import { getOctokit } from "@actions/github"
 import { createWriteStream } from "fs"
 import { join } from "path/posix"
 import { cwd } from "process"
-import { Stream } from "stream"
 
 async function run(): Promise<void> {
   try {
@@ -40,12 +39,18 @@ async function run(): Promise<void> {
         `Asset ${file} not found in release ${release.data.tag_name}`
       )
     }
+    const filePath = !target
+      ? asset.name
+      : target.endsWith("/")
+      ? join(target, asset.name)
+      : target
+
+    debug(`Downloading ${asset.name} to ${filePath}`)
+    // https://github.com/octokit/rest.js/issues/6#issuecomment-477800969
+    const fileStream = createWriteStream(join(cwd(), filePath))
 
     // Download the asset and pipe it into a file
-    const response = await github.rest.repos.getReleaseAsset({
-      mediaType: {
-        format: "octet-stream"
-      },
+    const { data } = await github.rest.repos.getReleaseAsset({
       owner,
       repo,
       asset_id: asset.id,
@@ -54,20 +59,10 @@ async function run(): Promise<void> {
       }
     })
 
-    const filePath = !target
-      ? asset.name
-      : target.endsWith("/")
-      ? join(target, asset.name)
-      : target
+    fileStream.write(data)
+    fileStream.end()
 
-    const fileStream = createWriteStream(join(cwd(), filePath))
-
-    await new Promise((resolve, reject) => {
-      ;(response as unknown as Stream).pipe(fileStream)
-
-      fileStream.on("finish", resolve)
-      fileStream.on("error", reject)
-    })
+    setOutput("ok", true)
   } catch (error) {
     if (error instanceof Error) setFailed(error.message)
   }

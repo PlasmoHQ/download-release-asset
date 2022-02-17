@@ -49,11 +49,16 @@ function run() {
             if (!asset) {
                 throw new Error(`Asset ${file} not found in release ${release.data.tag_name}`);
             }
+            const filePath = !target
+                ? asset.name
+                : target.endsWith("/")
+                    ? (0, posix_1.join)(target, asset.name)
+                    : target;
+            (0, core_1.debug)(`Downloading ${asset.name} to ${filePath}`);
+            // https://github.com/octokit/rest.js/issues/6#issuecomment-477800969
+            const fileStream = (0, fs_1.createWriteStream)((0, posix_1.join)((0, process_1.cwd)(), filePath));
             // Download the asset and pipe it into a file
-            const response = yield github.rest.repos.getReleaseAsset({
-                mediaType: {
-                    format: "octet-stream"
-                },
+            const { data } = yield github.rest.repos.getReleaseAsset({
                 owner,
                 repo,
                 asset_id: asset.id,
@@ -61,18 +66,9 @@ function run() {
                     accept: "application/octet-stream"
                 }
             });
-            const filePath = !target
-                ? asset.name
-                : target.endsWith("/")
-                    ? (0, posix_1.join)(target, asset.name)
-                    : target;
-            const fileStream = (0, fs_1.createWriteStream)((0, posix_1.join)((0, process_1.cwd)(), filePath));
-            yield new Promise((resolve, reject) => {
-                ;
-                response.pipe(fileStream);
-                fileStream.on("finish", resolve);
-                fileStream.on("error", reject);
-            });
+            fileStream.write(data);
+            fileStream.end();
+            (0, core_1.setOutput)("ok", true);
         }
         catch (error) {
             if (error instanceof Error)
