@@ -69,7 +69,7 @@ function run() {
             const fileStream = (0, fs_1.createWriteStream)((0, posix_1.join)((0, process_1.cwd)(), filePath));
             yield new Promise((resolve, reject) => {
                 ;
-                response.data.pipe(fileStream);
+                response.pipe(fileStream);
                 fileStream.on("finish", resolve);
                 fileStream.on("error", reject);
             });

@@ -63,7 +63,7 @@ async function run(): Promise<void> {
     const fileStream = createWriteStream(join(cwd(), filePath))
 
     await new Promise((resolve, reject) => {
-      ;(response.data as unknown as Stream).pipe(fileStream)
+      ;(response as unknown as Stream).pipe(fileStream)
 
       fileStream.on("finish", resolve)
       fileStream.on("error", reject)
