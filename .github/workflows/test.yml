@@ -37,3 +37,4 @@ jobs:
         with:
           file: test.txt
           tag: test
+      - run: cat test.txt
