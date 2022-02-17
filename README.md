@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="typescript-action status" src="https://github.com/plasmo-corp/download-release-asse/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="download-release-asset status" src="https://github.com/plasmo-corp/download-release-asset/workflows/build-test/badge.svg"></a>
 </p>
 
 # Download release assets
