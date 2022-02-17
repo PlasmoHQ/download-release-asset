@@ -15,9 +15,9 @@ function wildcardToRegExp(s: string) {
 
 async function run(): Promise<void> {
   try {
-    const files = getInput("files") || "*"
-    const repository = getInput("repository")
-    const tag = getInput("tag")
+    const files = getInput("file") || getInput("files") || "*"
+    const repository = getInput("repo") || getInput("repository")
+    const tag = getInput("version") || getInput("tag")
     const target = getInput("target") || "."
     const token = getInput("token")
 

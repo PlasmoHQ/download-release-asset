@@ -32,9 +32,9 @@ function wildcardToRegExp(s) {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const files = (0, core_1.getInput)("files") || "*";
-            const repository = (0, core_1.getInput)("repository");
-            const tag = (0, core_1.getInput)("tag");
+            const files = (0, core_1.getInput)("file") || (0, core_1.getInput)("files") || "*";
+            const repository = (0, core_1.getInput)("repo") || (0, core_1.getInput)("repository");
+            const tag = (0, core_1.getInput)("version") || (0, core_1.getInput)("tag");
             const target = (0, core_1.getInput)("target") || ".";
             const token = (0, core_1.getInput)("token");
             if (process.env.NODE_ENV === "test") {

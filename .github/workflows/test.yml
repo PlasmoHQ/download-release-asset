@@ -35,14 +35,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          file: test.txt
+          files: test.txt
           tag: test
       - run: |
           ls
           cat test.txt
       - uses: ./
         with:
-          file: |
+          files: |
             test-*.md
           tag: test
       - run: |
