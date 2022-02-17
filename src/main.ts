@@ -1,19 +1,28 @@
-import { debug, getInput, setFailed, setOutput } from "@actions/core"
+import { debug, getInput, info, setFailed } from "@actions/core"
 import { getOctokit } from "@actions/github"
 import { createWriteStream } from "fs"
+import { ensureDir } from "fs-extra"
 import { join } from "path/posix"
 import { cwd } from "process"
 
+// https://github.com/duhow/download-github-release-assets/blob/main/src/main.js
+function regExpEscape(s: string) {
+  return s.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&")
+}
+function wildcardToRegExp(s: string) {
+  return new RegExp(`^${s.split(/\*+/).map(regExpEscape).join(".*")}$`)
+}
+
 async function run(): Promise<void> {
   try {
-    const file = getInput("file", { required: true })
+    const files = getInput("files") || "*"
     const repository = getInput("repository")
     const tag = getInput("tag")
-    const target = getInput("target") || file
+    const target = getInput("target") || "."
     const token = getInput("token")
 
     if (process.env.NODE_ENV === "test") {
-      debug(file)
+      debug(files)
       return
     }
 
@@ -32,37 +41,62 @@ async function run(): Promise<void> {
           tag
         }))
 
-    const asset = release.data.assets.find((asset) => asset.name === file)
+    if (!release) {
+      throw new Error(`Release ${tag} not found for ${repository}`)
+    }
 
-    if (!asset) {
+    if (release.data.assets.length === 0) {
+      throw new Error(`Release ${tag} in ${repository} has no asset.`)
+    }
+
+    const fileGlob = files.split("\n")
+
+    const assets =
+      fileGlob[0] === "*"
+        ? release.data.assets
+        : release.data.assets.filter((asset) =>
+            fileGlob.some((g) => asset.name.match(wildcardToRegExp(g)))
+          )
+
+    if (assets.length === 0) {
       throw new Error(
-        `Asset ${file} not found in release ${release.data.tag_name}`
+        `No asset to download in release ${release.data.tag_name}`
       )
     }
-    const filePath = !target
-      ? asset.name
-      : target.endsWith("/")
-      ? join(target, asset.name)
-      : target
 
-    debug(`Downloading ${asset.name} to ${filePath}`)
-    // https://github.com/octokit/rest.js/issues/6#issuecomment-477800969
-    const fileStream = createWriteStream(join(cwd(), filePath))
+    const downloadPath = join(cwd(), target)
 
-    // Download the asset and pipe it into a file
-    const { data } = await github.rest.repos.getReleaseAsset({
-      owner,
-      repo,
-      asset_id: asset.id,
-      headers: {
-        accept: "application/octet-stream"
-      }
-    })
+    await ensureDir(downloadPath)
 
-    fileStream.write(data)
-    fileStream.end()
+    await Promise.all(
+      assets.map(
+        (asset) =>
+          new Promise(async (resolve) => {
+            const filePath = join(downloadPath, asset.name)
 
-    setOutput("ok", true)
+            // https://github.com/octokit/rest.js/issues/6#issuecomment-477800969
+            const fileStream = createWriteStream(filePath)
+
+            // Download the asset and pipe it into a file
+            info(`Downloading ${asset.name} to ${filePath}`)
+
+            const { data } = await github.rest.repos.getReleaseAsset({
+              owner,
+              repo,
+              asset_id: asset.id,
+              headers: {
+                accept: "application/octet-stream"
+              }
+            })
+
+            fileStream.write(Buffer.from(data as unknown as ArrayBuffer))
+            fileStream.end()
+            resolve(true)
+          })
+      )
+    )
+
+    info("Successfully downloaded assets")
   } catch (error) {
     if (error instanceof Error) setFailed(error.message)
   }

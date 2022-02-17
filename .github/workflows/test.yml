@@ -37,4 +37,14 @@ jobs:
         with:
           file: test.txt
           tag: test
-      - run: cat test.txt
+      - run: |
+          ls
+          cat test.txt
+      - uses: ./
+        with:
+          file: |
+            test-*.md
+          tag: test
+      - run: |
+          ls
+          cat test-c.md

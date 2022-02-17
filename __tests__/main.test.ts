@@ -8,7 +8,7 @@ test("test runs", () => {
   const ip = join(cwd(), "lib", "main.js")
   env["NODE_ENV"] = "test"
 
-  env["INPUT_FILE"] = "test.txt"
+  env["INPUT_FILES"] = "test.txt"
   const options: ExecFileSyncOptions = {
     env
   }

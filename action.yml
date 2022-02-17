@@ -1,10 +1,13 @@
-name: "Download Release Asset"
+name: "Download Release Assets"
 description: "An action to download github release assets."
 author: "Plasmo Corp."
+branding:
+  color: "purple"
+  icon: "download"
 inputs:
-  file:
-    description: "The file to be downloaded."
-    required: true
+  files:
+    description: "The files to be downloaded. Accept single file or glob pattern. If empty, it download everything"
+    required: false
   repository:
     description: "The `owner/repo` containing the release."
     required: false
