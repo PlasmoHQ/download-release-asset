@@ -1,11 +1,25 @@
-name: "Plasmo Github Action Template"
-description: "Straight forward template minus the overhead."
+name: "Download Release Asset"
+description: "An action to download github release assets."
 author: "Plasmo Corp."
 inputs:
-  milliseconds: # change this
+  file:
+    description: "The file to be downloaded."
     required: true
-    description: "input description here"
-    default: "3000"
+  repository:
+    description: "The `owner/repo` containing the release."
+    required: false
+    default: ${{ github.repository }}
+  tag:
+    description: "The release version tag to download, i.e v1.0.0."
+    required: false
+    default: "latest"
+  target:
+    description: "Target file path."
+    required: false
+  token:
+    description: "The GitHub token. Typically this will be secrets.GITHUB_TOKEN"
+    required: false
+    default: ${{ github.token }}
 runs:
   using: "node16"
   main: "dist/index.js"

@@ -1,16 +1,16 @@
 <p align="center">
-  <a href="https://github.com/plasmo-corp/gh-action-template/actions"><img alt="typescript-action status" src="https://github.com/plasmo-corp/gh-action-template/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="typescript-action status" src="https://github.com/plasmo-corp/download-release-asse/workflows/build-test/badge.svg"></a>
 </p>
 
-# Plasmo Github Action Template
+# Download release assets
 
-Use this template to bootstrap new github action.
+This action can be used to download an asset from a release.
 
 ## Usage
 
 ```yaml
 steps:
-  - uses: plasmo-corp/gh-action-template@v1
+  - uses: plasmo-corp/download-release-asset@v0.0.0
     with:
-      milliseconds: '2000'
+      file: test.txt
 ```
