@@ -1,4 +1,4 @@
-name: "Download Github Release Assets"
+name: "Download Github Release Assets, by Plasmo"
 description: "An action to download github release assets."
 author: "Plasmo Corp."
 branding:
