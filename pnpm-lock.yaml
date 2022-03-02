@@ -10,7 +10,7 @@ specifiers:
   '@typescript-eslint/parser': 5.12.0
   '@vercel/ncc': 0.33.3
   eslint: 8.9.0
-  eslint-config-prettier: 8.3.0
+  eslint-config-prettier: 8.5.0
   eslint-plugin-jest: 26.1.1
   eslint-plugin-prettier: 4.0.0
   fs-extra: 10.0.0
@@ -33,9 +33,9 @@ devDependencies:
   '@typescript-eslint/parser': 5.12.0_eslint@8.9.0+typescript@4.5.5
   '@vercel/ncc': 0.33.3
   eslint: 8.9.0
-  eslint-config-prettier: 8.3.0_eslint@8.9.0
+  eslint-config-prettier: 8.5.0_eslint@8.9.0
   eslint-plugin-jest: 26.1.1_68713f6eb844b3192df8841f62352b3e
-  eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
+  eslint-plugin-prettier: 4.0.0_794a52da99218bbf336c7f1d5e018dec
   jest: 27.5.1
   js-yaml: 4.1.0
   prettier: 2.5.1
@@ -1459,8 +1459,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier/8.3.0_eslint@8.9.0:
-    resolution: {integrity: sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==}
+  /eslint-config-prettier/8.5.0_eslint@8.9.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -1490,7 +1490,7 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_07b422646bb75d3db791621d4fdbc992:
+  /eslint-plugin-prettier/4.0.0_794a52da99218bbf336c7f1d5e018dec:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -1502,7 +1502,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.9.0
-      eslint-config-prettier: 8.3.0_eslint@8.9.0
+      eslint-config-prettier: 8.5.0_eslint@8.9.0
       prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
