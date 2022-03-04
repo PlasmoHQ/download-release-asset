@@ -1,6 +1,6 @@
 {
   "name": "@plasmo/download-release-asset",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Download release asset from a github release",
   "main": "lib/main.js",
