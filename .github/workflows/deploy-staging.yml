@@ -28,6 +28,12 @@ jobs:
           cache: "pnpm"
       - run: pnpm run all
       - run: cp action.yml dist/
+
+      - name: Configure git information
+        run: |
+          git config --global user.name 'Plasmo G.A.T Deployer'
+          git config --global user.email 'support@plasmo.com'
+
       - run: pnpm dlx gh-pages -d dist -b staging
 
   test: # make sure the action works on a clean machine without building
