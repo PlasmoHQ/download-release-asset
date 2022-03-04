@@ -1,0 +1,40 @@
+name: "Download Github Release Assets, by Plasmo"
+description: "An action to download github release assets."
+author: "Plasmo Corp."
+branding:
+  color: "purple"
+  icon: "download"
+inputs:
+  files:
+    description: "The files to be downloaded. Accept single file or glob pattern. If empty, it download everything"
+    required: false
+  file:
+    description: "Alias for files."
+    required: false
+
+  repository:
+    description: "The `owner/repo` containing the release."
+    required: false
+    default: ${{ github.repository }}
+  repo:
+    description: "Alias for repository."
+    required: false
+
+  tag:
+    description: "The release version tag to download, i.e v1.0.0."
+    required: false
+    default: "latest"
+  version:
+    description: "Alias for tag."
+    required: false
+
+  target:
+    description: "Target file path."
+    required: false
+  token:
+    description: "The GitHub token. Typically this will be secrets.GITHUB_TOKEN"
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: "node16"
+  main: "index.js"
