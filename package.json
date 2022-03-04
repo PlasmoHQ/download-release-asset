@@ -1,8 +1,8 @@
 {
-  "name": "@plasmo/gh-action-template",
+  "name": "@plasmo/download-release-asset",
   "version": "1.0.0",
   "private": true,
-  "description": "Plasmo Github Action Template",
+  "description": "Download release asset from a github release",
   "main": "lib/main.js",
   "scripts": {
     "dev": "run-p dev:*",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plasmo-corp/gh-action-template.git"
+    "url": "git+https://github.com/plasmo-corp/download-release-asset.git"
   },
   "keywords": [
     "actions",
