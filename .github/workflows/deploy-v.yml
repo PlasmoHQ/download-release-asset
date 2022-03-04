@@ -20,13 +20,13 @@ jobs:
           git config --global user.name 'Plasmo G.A.T Deployer'
           git config --global user.email 'support@plasmo.com'
 
-      - run: git checkout -b {{ env.VERSION }}
+      - run: git checkout -b ${{ env.VERSION }}
       - name: Deploy {{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git push -fu origin {{ env.VERSION }}
+          git push -fu origin ${{ env.VERSION }}
 
   check-deployment:
     needs: deploy
