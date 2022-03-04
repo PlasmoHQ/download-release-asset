@@ -21,7 +21,7 @@ jobs:
           git config --global user.email 'support@plasmo.com'
 
       - run: git checkout -b ${{ env.VERSION }}
-      - name: Deploy {{ env.VERSION }}
+      - name: Deploy ${{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
