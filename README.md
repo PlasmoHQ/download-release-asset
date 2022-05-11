@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/plasmo-corp/download-release-asset/actions"><img alt="download-release-asset status" src="https://github.com/plasmo-corp/download-release-asset/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/PlasmoHQ/download-release-asset/actions"><img alt="download-release-asset status" src="https://github.com/PlasmoHQ/download-release-asset/workflows/build-test/badge.svg"></a>
 </p>
 
 # Download release assets
@@ -12,7 +12,7 @@ To download any `test-*.txt` file into the pwd, from the latest release within t
 
 ```yaml
 steps:
-  - uses: plasmo-corp/download-release-asset@v1.0.0
+  - uses: PlasmoHQ/download-release-asset@v1.0.0
     with:
       files: test-*.txt
 ```
@@ -21,12 +21,12 @@ To download any `test-*.md` and `foo-*.zip` file from another repository, with a
 
 ```yaml
 steps:
-  - uses: plasmo-corp/download-release-asset@v1.0.0
+  - uses: PlasmoHQ/download-release-asset@v1.0.0
     with:
       files: |
         test-*.md
         foo-*.zip
-      repository: plasmo-corp/test-repo
+      repository: PlasmoHQ/test-repo
       tag: v1.0.0
       target: download/
       token: ${{ secrets.GITHUB_TOKEN }}
