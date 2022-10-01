@@ -163,7 +163,7 @@ packages:
       '@babel/compat-data': 7.17.0
       '@babel/core': 7.13.10
       '@babel/helper-validator-option': 7.16.7
-      browserslist: 4.19.3
+      browserslist: 4.20.0
       semver: 6.3.0
     dev: true
 
@@ -176,7 +176,7 @@ packages:
       '@babel/compat-data': 7.17.0
       '@babel/core': 7.17.5
       '@babel/helper-validator-option': 7.16.7
-      browserslist: 4.19.3
+      browserslist: 4.20.0
       semver: 6.3.0
     dev: true
 
@@ -1315,13 +1315,13 @@ packages:
     resolution: {integrity: sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==}
     dev: true
 
-  /browserslist/4.19.3:
-    resolution: {integrity: sha512-XK3X4xtKJ+Txj8G5c30B4gsm71s69lqXlkYui4s6EkKxuv49qjYlY6oVd+IFJ73d4YymtM3+djvvt/R/iJwwDg==}
+  /browserslist/4.20.0:
+    resolution: {integrity: sha512-bnpOoa+DownbciXj0jVGENf8VYQnE2LNWomhYuCsMmmx9Jd9lwq0WXODuwpSsp8AVdKM2/HorrzxAfbKvWTByQ==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001313
-      electron-to-chromium: 1.4.75
+      electron-to-chromium: 1.4.76
       escalade: 3.1.1
       node-releases: 2.0.2
       picocolors: 1.0.0
@@ -1550,8 +1550,8 @@ packages:
       webidl-conversions: 5.0.0
     dev: true
 
-  /electron-to-chromium/1.4.75:
-    resolution: {integrity: sha512-LxgUNeu3BVU7sXaKjUDD9xivocQLxFtq6wgERrutdY/yIOps3ODOZExK1jg8DTEg4U8TUCb5MLGeWFOYuxjF3Q==}
+  /electron-to-chromium/1.4.76:
+    resolution: {integrity: sha512-3Vftv7cenJtQb+k00McEBZ2vVmZ/x+HEF7pcZONZIkOsESqAqVuACmBxMv0JhzX7u0YltU0vSqRqgBSTAhFUjA==}
     dev: true
 
   /emittery/0.8.1:
